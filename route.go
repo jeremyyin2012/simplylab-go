@@ -20,7 +20,7 @@ func SetupRouter() *gin.Engine {
 		user := pvd.User().GetUserByName(userName)
 		ctx := model.ServiceContext{User: user}
 		svc := services.NewServices(&ctx, pvd)
-		req := model.GetAiChatResponseInput{UserName: userName, Message: "hi"}
+		req := model.GetAiChatResponseInput{UserName: model.UserName(userName), Message: "hi"}
 		res := svc.Chat().GetAIChatResponse(req)
 		c.JSON(http.StatusOK, res)
 		c.String(http.StatusOK, "pong")
